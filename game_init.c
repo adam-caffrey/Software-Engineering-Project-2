@@ -7,6 +7,8 @@
 
 #include "game_init.h"
 #include <stdio.h>
+#include <string.h>
+
 
 
 /*
@@ -40,9 +42,26 @@ void initialize_board(square board[NUM_ROWS][NUM_COLUMNS]){
  * Output: The number of players of the game
  */
 int initialize_players(player players[]){
-    
-    //YOU WILL NEED TO IMPLEMENT THIS FUNCTION IN THIS LAB
-        return 0;
+	
+    int i, limit=6, count=0;
+	
+	for(i=0; i<6; i++){
+	    i<1?printf("\nPlease enter the name of the player\n") : printf("\nPlease enter the name of the next player\n");
+		printf("Name: "); 
+		fgets(players[i].name,10,stdin);
+		if(players[i].name[0] =='\n' && i<2) 
+		{
+			printf("\n\tThere are too few players to start the game\n");
+			i--;
+		}
+		else if(players[i].name[0] =='\n')
+			break;
+		else{
+		players[i].name[strlen(players[i].name) - 1] = '\0'; //removes \n from the end of the players name due to fgets and replaces it with \0
+		count++; //counts the players
+		}
+	}
+        return count;
     }
     
    
