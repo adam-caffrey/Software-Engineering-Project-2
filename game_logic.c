@@ -12,7 +12,7 @@ void printLine();
 
 /*
  * Returns the first letter associated with the color of the token
- * 
+ *
  * Input: t - pointer to a token
  * Output: initial of the color of the token
  */
@@ -28,13 +28,13 @@ char print_token(token *t){
 
 /*
  * Prints the board
- * 
- * Input: the board to be printed. 
+ *
+ * Input: the board to be printed.
  */
 void print_board(square board[NUM_ROWS][NUM_COLUMNS]){
     printf("                THE BOARD\n");
     for(int i =0; i < NUM_ROWS; i++){
-       
+
         //prints an horizontal line
         printLine();
         //prints the row number
@@ -64,15 +64,15 @@ void print_board(square board[NUM_ROWS][NUM_COLUMNS]){
 }
 
 void printLine(){
-  printf("   -------------------------------------\n");  
+  printf("   -------------------------------------\n");
 }
 
 /*
  * Place tokens in the first column of the board
- * 
+ *
  * Input: board - a 6x9 array of squares that represents the board
  *        players - the array of the players
- *        numPlayers - the number of players  
+ *        numPlayers - the number of players
  */
 void place_tokens(square board[NUM_ROWS][NUM_COLUMNS], player players[], int numPlayers){
     // TO BE IMPLEMENTED
@@ -82,15 +82,12 @@ void place_tokens(square board[NUM_ROWS][NUM_COLUMNS], player players[], int num
 
 /*
  * Place tokens in the first column of the board
- * 
+ *
  * Input: board - a 6x9 array of squares that represents the board
  *        players - the array of the players
- *        numPlayers - the number of players  
+ *        numPlayers - the number of players
  */
 
 void play_game(square board[NUM_ROWS][NUM_COLUMNS], player players[], int numPlayers){
     //TO BE IMPLEMENTED
 }
-
-
-
