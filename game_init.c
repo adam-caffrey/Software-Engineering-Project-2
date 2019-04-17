@@ -29,6 +29,8 @@ void initialize_board(square board[NUM_ROWS][NUM_COLUMNS]){
                 board[i][j].type = NORMAL;
             }
             board[i][j].stack = NULL;
+            board[i][j].stack_count = 0;
+
         }
     }
 }
@@ -44,7 +46,7 @@ int initialize_players(player players[]){
 	int i;
 	int limit=6, count=0, colour;
 	char *colours[6] = {"RED", "BLUE", "GREEN", "YELLOW", "PINK", "ORANGE"};
-  int array[6];
+  int filter_colours[6];
 
 
 	for(i=0; i<6; i++){
@@ -71,12 +73,12 @@ int initialize_players(player players[]){
 		scanf("%d", &colour);
 		colour--;
 
-		if (array[colour] != -1 && colour<6)
+		if (filter_colours[colour] != -1 && colour<6)
 		{
 			printf("\tYour colour is %s\n\n", colours[colour]);
 			players[i].col = colour;
 			players[i].token = colour;
-			array[colour] = -1;
+			filter_colours[colour] = -1;
 		}
 		else
 		{

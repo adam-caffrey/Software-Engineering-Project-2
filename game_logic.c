@@ -7,6 +7,7 @@
 
 #include "game_init.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void printLine();
 
@@ -75,7 +76,43 @@ void printLine(){
  *        numPlayers - the number of players
  */
 void place_tokens(square board[NUM_ROWS][NUM_COLUMNS], player players[], int numPlayers){
-    // TO BE IMPLEMENTED
+  int limit = numPlayers*4, i, x;
+
+print_board(board);
+
+for (i=0; i<limit; i++)
+{
+  i<numPlayers? printf("\n%s, please select position for your first token\n", players[i].name) : printf("\n%s, please select position for your next token\n", players[i%numPlayers].name);
+  scanf("%d", &x);
+
+  if(x>5){
+    printf("\n\tThis is not a valid position\n\tPlease choose a different position");
+    i--;
+  }
+  else if ((i<=5 && board[x][0].stack_count>0) || (i<=10 && board[x][0].stack_count>1) || (i<=15 && board[x][0].stack_count>2) || (i<=20 && board[x][0].stack_count>3) || (i<=25 && board[x][0].stack_count>4))
+  {
+    printf("\n\tThis stack level hasnt been filled\n\tPlease enter a different position\n");
+    i--;
+  }
+  else if(board[x][0].stack_count>0 && board[x][0].stack->col == players[i%numPlayers].col)
+  {
+    printf("\n\tYou cannot stack your tokens on top of one another\n\tPlease choose a different position\n");
+    i--;
+  }
+  else{
+
+    token *curr = board[x][0].stack;
+    board[x][0].stack = malloc(sizeof(token));
+    board[x][0].stack->col = players[i%numPlayers].col;
+    board[x][0].stack->next = curr;
+    board[x][0].stack_count++;
+    print_board(board);
+
+  }
+  if(i==limit-1)
+  printf("\n\tAll tokens have been placed\n");
+}
+return;
 
 }
 
